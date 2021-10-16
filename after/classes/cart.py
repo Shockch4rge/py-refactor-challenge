@@ -5,9 +5,9 @@ from after.classes.product_manager import ProductManager
 
 
 class Cart:
-    def __init__(self):
-        """Responsible for holding a list of products in the inventory"""
-        self.manager = ProductManager()
+    def __init__(self, manager: ProductManager):
+        """Responsible for holding a list of products in the inventory."""
+        self.manager = manager
         self.products: List[Product] = []
         self.size = len(self.products)
 
