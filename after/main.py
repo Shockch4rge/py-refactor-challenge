@@ -2,6 +2,8 @@ import sys
 from enum import Enum
 
 from after.classes.cart import Cart
+from after.classes.menu_builder import MenuBuilder, ProductProperty
+from after.classes.product_manager import ProductManager
 
 
 class Action(Enum):
@@ -15,7 +17,7 @@ class Action(Enum):
     EXIT = "8"
 
 
-def print_menu():
+def print_directory():
     print("\n------------------------TECH EMPORIUM-------------------------\n")
     print(
         """
@@ -33,14 +35,15 @@ def print_menu():
 
 
 def read_action() -> str:
-    return input("Please select a number which corresponds with your desired action: ")
+    return str(input("Please select a number which corresponds with your desired action: "))
 
 
 def main():
-    """Create an empty cart."""
-    cart = Cart()
+    manager = ProductManager()
+    cart = Cart(manager)  # create empty cart
+    menu_builder = MenuBuilder(manager.get_products())
 
-    print_menu()
+    print_directory()
     action = read_action()
 
     # Show cart
@@ -81,6 +84,7 @@ def main():
 
     else:
         print('Please select a valid number from the list given above!')
+        main()
 
 
 if __name__ == '__main__':
