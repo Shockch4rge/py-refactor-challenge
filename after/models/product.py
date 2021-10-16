@@ -3,10 +3,10 @@ from enum import Enum, auto
 
 
 class ProductCategory(Enum):
-    TABLET = auto()
-    LAPTOP = auto()
-    GAME_CONSOLE = auto()
-    ANY = auto()
+    TABLET = "TABLET"
+    LAPTOP = "LAPTOP"
+    GAME_CONSOLE = "GAME CONSOLE"
+    ANY = ""
 
 
 @dataclass(frozen=True)
