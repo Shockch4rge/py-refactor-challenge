@@ -6,11 +6,6 @@ from enum import Enum, auto
 from after.models.product import Product, ProductCategory
 
 
-class SortOrder(Enum):
-    ASCENDING = auto()
-    DESCENDING = auto()
-
-
 class ProductProperty(Enum):
     NAME = auto()
     PRICE = auto()
@@ -41,19 +36,19 @@ class MenuBuilder:
     def get_property_sorting(self, prop: ProductProperty, descending: bool = False) -> \
             Union[List[str], List[float], List[ProductCategory], List[bool]]:
         """Get sorting of specified property in ascending or descending order."""
-        product_properties = []
+        property_sortings = []
 
         if prop == ProductProperty.PRICE:
-            product_properties = [product.price for product in self.products]
+            property_sortings = [product.price for product in self.products]
 
         elif prop == ProductProperty.NAME:
-            product_properties = [product.name for product in self.products]
+            property_sortings = [product.name for product in self.products]
 
         elif prop == ProductProperty.CATEGORY:
-            product_properties = [product.category.value for product in self.products]
+            property_sortings = [product.category.value for product in self.products]
 
         elif prop == ProductProperty.DISCOUNTABLE:
-            product_properties = [product.discountable for product in self.products]
+            property_sortings = [product.discountable for product in self.products]
 
-        product_properties.sort(reverse=descending)
-        return product_properties
+        property_sortings.sort(reverse=descending)
+        return property_sortings
